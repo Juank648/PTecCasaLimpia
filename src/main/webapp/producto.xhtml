@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    <h:form>
+    <h:panelGrid columns="3">
+        <!-- Campos para nuevo producto -->
+        <h:outputLabel for="nombre" value="Nombre del Producto" />
+        <h:inputText id="nombre" value="#{productosController.newProducto.nombre}" required="true" />
+
+        <h:outputLabel for="precio" value="Precio" />
+        <h:inputText id="precio" value="#{productosController.newProducto.precio}" required="true" />
+        
+        <h:outputLabel for="cantidad" value="Cantidad" />
+        <h:inputText id="cantidad" value="#{productosController.newProducto.cantidad}" required="true" />
+
+        <h:commandButton value="Guardar Producto" action="#{productosController.saveProducto}" />
+    </h:panelGrid>
+</h:form>
+
+<h:panelGrid columns="1">
+    <h:dataTable value="#{productosController.productosList}" var="producto">
+        <h:column>
+            <f:facet name="header">Nombre</f:facet>
+            #{producto.nombre}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Precio</f:facet>
+            #{producto.precio}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Acciones</f:facet>
+            <h:commandButton value="Editar" action="#{productosController.setSelectedProducto(producto)}" />
+        </h:column>
+    </h:dataTable>
+</h:panelGrid>
+</html>
